@@ -1,113 +1,178 @@
 # Steward
 
-> A personal operating environment that reduces cognitive load through a declarative household model, deterministic reasoning, and purpose-built devices.
+> A personal operating environment for managing knowledge, commitments, and context.
 
 ## Vision
 
-Build a dedicated e-ink "PADD" inspired by *Star Trek: The Next Generation* that serves as the primary interface to a self-hosted household management system.
+Steward is a self-hosted operating environment designed to reduce cognitive load.
 
-Rather than building another web app or mobile application, the goal is to create a collection of inexpensive, purpose-built devices that act as windows into a central home server.
+Instead of organizing life around isolated applications, Steward maintains a structured model of the world: people, projects, places, inventory, commitments, activities, and the relationships between them.
 
-The experience should feel closer to using paper than a smartphone.
+From that shared understanding, Steward can determine what information is relevant in a given moment, recommend the next best action, explain its reasoning, and present that information through whichever interface is most appropriate.
 
----
+The goal is not to remember more.
 
-# Goals
-
-- Dedicated hardware with a distraction-free interface
-- Instant-on experience with long battery life
-- Self-hosted
-- Offline-capable where practical
-- Wi-Fi synchronization
-- Bluetooth support for peripherals and future integrations
-- Over-the-air firmware updates
-- Fast iteration during development
-- Multiple devices working together
-- Reduce cognitive overhead rather than maximize feature count
+The goal is to remember less.
 
 ---
 
-# Design Principles
+# Philosophy
 
-## The House Is The Computer
+Modern software tends to separate information into applications.
 
-The household server owns:
+Your calendar knows nothing about your pantry.
 
-- knowledge
-- business logic
-- planning
-- AI
-- synchronization
-- scheduling
-- relationships
+Your shopping list knows nothing about your projects.
 
-Clients own:
+Your task manager knows nothing about where you're going today.
 
-- rendering
-- input
-- connectivity
-- local cache
-- device-specific capabilities
+Steward treats these as different views of the same underlying world.
 
-Devices should remain intentionally simple.
+Instead of asking:
+
+> Which app should I open?
+
+The system asks:
+
+> Given everything I know right now, what deserves my attention?
 
 ---
 
-## Declarative First
+# Core Principles
 
-Everything should be represented as structured information.
+## One Model, Many Interfaces
 
-Interfaces consume the model rather than owning it.
+Every interface interacts with the same declarative household model.
 
-```
-PADD
-Web
-CLI
-LLM
-Future Clients
-        │
-        ▼
- Declarative Model
-```
+Current and future clients may include:
 
-The structured model is the source of truth.
+* Web application
+* CLI
+* Purpose-built e-ink PADDs
+* Mobile applications
+* Voice interfaces
+* Home dashboards
+* AI agents
 
----
+Clients do not own data.
 
-## Activities Instead of Applications
-
-The system organizes around activities rather than apps.
-
-Instead of:
-
-> Launch Shopping App
-
-The experience becomes:
-
-> Continue Grocery Shopping
-
-Instead of:
-
-> Launch Notes
-
-The experience becomes:
-
-> Continue Guest Bedroom Project
-
-Activities become the primary abstraction.
+They render and manipulate the shared model.
 
 ---
 
-# Architecture
+## Declarative World Model
 
-```
+The structured model describes the current state of the household.
+
+Examples include:
+
+* people
+* projects
+* activities
+* inventory
+* places
+* documents
+* devices
+* relationships
+* commitments
+
+Relationships themselves are first-class objects with semantic meaning.
+
+The model becomes the source of truth for every client.
+
+---
+
+## Deterministic Reasoning
+
+Natural language is not the decision engine.
+
+The LLM exists to translate between human intent and the structured model.
+
+Planning is performed by deterministic systems.
+
+The architecture intentionally separates:
+
+* understanding
+* knowledge
+* reasoning
+* presentation
+
+This keeps recommendations predictable, explainable, and testable.
+
+---
+
+## Context-Aware Planning
+
+Recommendations should emerge naturally from context.
+
+Examples:
+
+"I'm heading to the hardware store."
+
+↓
+
+The system evaluates:
+
+* active projects
+* inventory
+* travel
+* deadlines
+* available time
+* dependencies
+* household responsibilities
+
+↓
+
+Then decides what is worth surfacing.
+
+Sometimes the correct answer is agreement.
+
+Sometimes the correct answer is:
+
+> Before you leave, stop at Aldi first.
+
+---
+
+## Progressive Structure
+
+Historically, structured personal information systems failed because they required users to become data-entry clerks.
+
+Steward reverses that relationship.
+
+People communicate naturally.
+
+The system proposes structure.
+
+The user confirms or corrects it.
+
+Over time the household model becomes richer without requiring constant manual maintenance.
+
+---
+
+## Explainable Intelligence
+
+Every recommendation should have provenance.
+
+The system should always be able to answer:
+
+> Why?
+
+with facts and rules rather than opaque AI reasoning.
+
+Trust comes from transparency.
+
+---
+
+# System Architecture
+
+```text
                  Natural Language
                          │
                          ▼
                        LLM
                          │
                          ▼
-              Declarative Household Model
+              Declarative World Model
                          │
              ┌───────────┴───────────┐
              ▼                       ▼
@@ -115,329 +180,43 @@ Activities become the primary abstraction.
              │                       │
              └───────────┬───────────┘
                          ▼
-              Recommendation Engine
+             Recommendation Engine
                          │
-         ┌───────────────┼────────────────┐
-         ▼               ▼                ▼
-      PADD            Web UI             CLI
+             ┌───────────┼────────────┐
+             ▼           ▼            ▼
+          Web UI       PADD         CLI
 ```
 
----
+The AI communicates.
 
-# Household Model
-
-The household is represented as a semantic graph.
-
-Potential entities:
-
-- Person
-- Activity
-- Project
-- Task
-- Event
-- Place
-- Inventory Item
-- Tool
-- Recipe
-- Shopping List
-- Document
-- Device
-- Reminder
-
-Relationships are first-class citizens.
-
----
-
-# Relationship Metadata
-
-Relationships contain semantics.
-
-Possible metadata:
-
-- responsibility
-- estimated duration
-- deadline
-- location
-- cost
-- confidence
-- priority
-- prerequisite type
-- blocking status
-
-Example:
-
-```yaml
-relationship:
-  type: prerequisite
-
-from: buy-paint
-to: paint-bedroom
-
-responsibility: Eric
-location: Hardware Store
-estimated-duration: 30m
-deadline: before-parents-visit
-```
-
-Because relationships carry meaning, they can be reasoned about.
-
----
-
-# Omnidirectional Navigation
-
-The graph should be traversable from any point.
-
-Examples:
-
-- "I'm going to the hardware store."
-- "What can I finish in twenty minutes?"
-- "What projects are blocked?"
-- "What depends on this inventory item?"
-- "What's affected if I postpone this project?"
-
-The graph stays the same.
-
-Only the starting point changes.
-
----
-
-# AI Philosophy
-
-The LLM is not the source of truth.
-
-The household model is.
-
-The LLM is responsible for:
-
-- understanding natural language
-- extracting entities
-- enriching incomplete information
-- asking clarifying questions
-- proposing new rules
-
-The LLM should never determine what is important.
-
----
-
-# Decision Model
-
-Knowledge and decision making are separate concerns.
-
-The LLM translates.
+The graph remembers.
 
 The rules engine decides.
 
-The knowledge graph remembers.
-
-This separation makes the system predictable, testable, and explainable.
+The clients present.
 
 ---
 
-# Deterministic Planning
+# PADD
 
-Recommendations should come from deterministic rules rather than LLM output.
+One client envisioned for Steward is a dedicated e-ink PADD inspired by *Star Trek: The Next Generation*.
 
-Possible inputs include:
+Unlike a tablet, the PADD is not intended to be a general-purpose computer.
 
-- urgency
-- deadline proximity
-- dependency unlocks
-- household impact
-- estimated duration
-- travel cost
-- location
-- context match
-- context switching cost
+Its purpose is to provide a calm, distraction-free window into Steward.
 
-Priority should be calculated.
+Possible characteristics include:
 
-Not hallucinated.
+* monochrome e-ink
+* Wi-Fi
+* Bluetooth
+* USB-C
+* week-long battery life
+* OTA updates
+* inexpensive enough to deploy throughout the home
 
----
+Multiple PADDs may exist simultaneously, each surfacing different aspects of the same shared model.
 
-# Contextual Planning
+The PADD is an interface.
 
-The assistant reasons over current context.
-
-Context includes things like:
-
-- current activity
-- intended destination
-- current location
-- available time
-- weather
-- inventory
-- household responsibilities
-- calendar
-
-Example:
-
-User:
-
-> I'm heading to the hardware store.
-
-The assistant evaluates:
-
-- What projects become cheaper to complete?
-- What errands can be combined?
-- Is there a more important task?
-- Are there dependencies this trip would unblock?
-
-Possible response:
-
-> Before heading there, stop at Aldi first. School pickup leaves little time afterward, and you'll also need painter's tape and wood glue while you're already near the hardware store.
-
-The assistant should occasionally push back when it can justify a better plan.
-
----
-
-# Explainability
-
-Every recommendation should be traceable.
-
-Example:
-
-> Why should I buy paint rollers?
-
-```
-Guest Bedroom Project
-        │
-Requires Paint Rollers
-        │
-Inventory = 0
-        │
-Destination = Hardware Store
-        │
-Rule #17 increased priority
-```
-
-Nothing should happen because "the AI thought so."
-
----
-
-# Progressive Structure
-
-Historically, personal information systems failed because maintaining structured data required too much manual effort.
-
-Natural language changes that.
-
-Instead of filling out forms:
-
-> I want to repaint the guest bedroom before my parents visit.
-
-The system extracts:
-
-- project
-- deadline
-- location
-- likely materials
-- estimated duration
-- responsible person
-
-It asks only the questions that matter.
-
-Structure should emerge over time rather than being required immediately.
-
----
-
-# Learning
-
-The AI improves the system without becoming the planner.
-
-Examples:
-
-- suggesting new rules
-- identifying recurring behavior
-- enriching entities
-- proposing relationships
-
-Example:
-
-> I've noticed you usually stop at Aldi after Costco. Would you like me to consider those trips together?
-
-Once accepted, this becomes a deterministic rule.
-
----
-
-# Executive Function
-
-The goal is not organization.
-
-The goal is reducing cognitive load.
-
-The user should not need to remember:
-
-- dependencies
-- prerequisites
-- inventory
-- schedules
-- project state
-- future consequences
-
-The system carries that context and surfaces only what matters.
-
----
-
-# Human Assistant Model
-
-A good assistant does more than remember facts.
-
-They manage context.
-
-Instead of simply answering requests, they evaluate whether a better course of action exists.
-
-The system should behave similarly.
-
-It should understand:
-
-- opportunity cost
-- urgency
-- context
-- dependencies
-- timing
-- location
-- responsibility
-
-Sometimes the best response is agreement.
-
-Sometimes the best response is:
-
-> "Before you do that, there's something more important."
-
----
-
-# Hardware
-
-Initial target:
-
-- Monochrome e-ink
-- ESP32-S3
-- Wi-Fi
-- Bluetooth
-- USB-C
-- Battery powered
-- OTA firmware updates
-
-Color e-ink is a future enhancement.
-
-The hardware should remain inexpensive enough that multiple devices can exist throughout the home.
-
----
-
-# Long-Term Vision
-
-This is not primarily a household management application.
-
-It is a personal operating environment.
-
-The declarative model describes the world.
-
-The knowledge graph stores relationships.
-
-The rules engine provides judgment.
-
-The LLM provides communication.
-
-Purpose-built devices provide presence.
-
-Together they create a system that behaves less like a chatbot and more like a trusted human assistant—one that understands context, explains its reasoning, and helps surface the right information at the right time.
+Steward is the system.

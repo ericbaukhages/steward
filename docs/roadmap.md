@@ -6,19 +6,11 @@
 
 # Vision
 
-Steward is a self-hosted operating environment designed to reduce cognitive load.
+Steward is a self-hosted operating environment designed to reduce cognitive load by maintaining a single, shared model of a person's world.
 
-Rather than building another collection of productivity tools, Steward maintains a single, shared understanding of a person's world—projects, tasks, notes, inventory, locations, people, routines, media, calendars, and devices.
+The goal is not to build a website or a handheld, but a coherent personal computing environment that can exist across many devices. The hardware is simply another client.
 
-Every interface becomes another window into the same underlying model.
-
-The long-term goal is **not** to build a website.
-
-The long-term goal is **not** to build a handheld.
-
-The goal is to build a coherent personal computing environment that can exist across many devices while always presenting the same underlying state.
-
-The hardware is simply another client.
+For the full concept, see [spec.md](./spec.md).
 
 ---
 
@@ -112,117 +104,9 @@ Interruptions should be intentional, explainable, and rare.
 
 # System Architecture
 
-Steward is composed of independent layers.
+Steward is composed of independent layers: Client Apps, Public API, Logic / Automation, Knowledge Graph, and Storage.
 
-```
-+---------------------------+
-|        Client Apps        |
-+---------------------------+
-|      Public API Layer     |
-+---------------------------+
-|     Logic / Automation    |
-+---------------------------+
-|      Knowledge Graph      |
-+---------------------------+
-|      Storage Layer        |
-+---------------------------+
-```
-
-Each layer should remain independently replaceable.
-
----
-
-# Major Components
-
-## Storage
-
-Responsible for persistence.
-
-Potential responsibilities include:
-
-* entities
-* documents
-* attachments
-* version history
-* relationships
-* event log
-
-Storage should avoid embedding business rules.
-
----
-
-## Knowledge Graph
-
-Represents the user's world.
-
-Examples include:
-
-* projects
-* tasks
-* people
-* devices
-* locations
-* inventory
-* routines
-* notes
-* documents
-* media
-* schedules
-
-Relationships are first-class.
-
-The graph should answer questions like:
-
-* "What belongs to this project?"
-* "Where did I leave this?"
-* "Who is waiting on me?"
-* "What blocks this task?"
-
----
-
-## Logic Engine
-
-Responsible for deterministic behavior.
-
-Examples:
-
-* recurring tasks
-* dependency resolution
-* reminders
-* automation
-* scheduling
-* state transitions
-* conflict detection
-
-The logic engine owns decisions.
-
----
-
-## AI Layer
-
-Responsible for language.
-
-Examples:
-
-* parsing requests
-* summarization
-* planning
-* semantic search
-* conversation
-
-The AI layer proposes.
-
-The logic layer decides.
-
----
-
-## API Layer
-
-Every client communicates through a stable API.
-
-Clients should not require knowledge of database internals.
-
-This allows entirely new interfaces to be built without changing the core system.
+For the detailed architecture, see [ARCHITECTURE.md](../ARCHITECTURE.md).
 
 ---
 

@@ -220,3 +220,10 @@ Multiple PADDs may exist simultaneously, each surfacing different aspects of the
 The PADD is an interface.
 
 Steward is the system.
+
+---
+
+## See Also
+
+- [roadmap.md](./roadmap.md) — living architectural roadmap and development phases
+- [ARCHITECTURE.md](../ARCHITECTURE.md) — how the pieces fit together

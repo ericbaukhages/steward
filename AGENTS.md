@@ -18,7 +18,7 @@ The hardware is a client. The system is the product.
 
 When making changes, start here:
 
-1. **[docs/roadmap.md](./docs/roadmap.md)** — vision, core principles, major components, development phases.
+1. **[docs/roadmap.md](./docs/roadmap.md)** — vision, core principles, development phases, and build order.
 2. **[ARCHITECTURE.md](./ARCHITECTURE.md)** — how services, APIs, storage, sync, auth, and deployment fit together.
 3. **[docs/spec.md](./docs/spec.md)** — original concept, PADD overview, system architecture diagram.
 4. **[docs/philosophy/attention.md](./docs/philosophy/attention.md)** — pull-first attention philosophy.
@@ -73,6 +73,8 @@ Storage, knowledge graph, logic engine, AI layer, API, and clients are independe
 |      Storage Layer        |
 +---------------------------+
 ```
+
+For the detailed treatment, see [ARCHITECTURE.md](./ARCHITECTURE.md).
 
 - **Storage** persists entities, relationships, documents, attachments, version history, and the event log.
 - **Knowledge Graph** represents the user's world and the relationships within it.

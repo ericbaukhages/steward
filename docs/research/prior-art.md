@@ -437,6 +437,25 @@ Steward should establish its own identity.
 
 ---
 
+# Platform Projects
+
+These projects define complete embedded operating environments rather than single applications.
+
+Study:
+
+- application lifecycle
+- plugin architecture
+- storage model
+- update mechanism
+- SDK
+- UI framework
+
+Examples:
+
+- FlipperZero
+
+---
+
 # Research Topics
 
 ## Firmware

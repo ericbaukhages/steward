@@ -1,3 +1,3 @@
 # Steward
 
-See [spec.md](./spec.md) for more info.
+See [docs/spec.md](./docs/spec.md) for the project overview.

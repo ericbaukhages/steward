@@ -1,9 +1,14 @@
 # Steward Documentation
 
-This folder contains the design philosophy, vision, and research behind Steward.
+This folder contains the design philosophy, vision, roadmap, and research behind Steward.
+
+For the living architecture document, see [ARCHITECTURE.md](../ARCHITECTURE.md) at the repository root.
+
+For the coding agent guide, see [AGENTS.md](../AGENTS.md).
 
 ## Documents
 
+- [roadmap.md](./roadmap.md) — Living architectural roadmap: vision, principles, major components, and development phases.
 - [spec.md](./spec.md) — Project vision, core principles, system architecture, and PADD concept.
 - [philosophy/](./philosophy/)
   - [attention.md](./philosophy/attention.md) — Attention and interruption philosophy; pull-first system design.

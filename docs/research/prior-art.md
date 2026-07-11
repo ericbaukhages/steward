@@ -175,6 +175,52 @@ The ideal platform:
 - battery-powered (preferred)
 - active community
 
+## Orion PDA
+
+https://orionpda.org/yt
+
+Focus
+
+Minimal pocket computer for notes, music, and disconnecting from notifications. Sharp display, solar charging, open hardware.
+
+Lessons
+
+- Intentionally limited scope: notes, music, no notifications.
+- Solar charging as a path to ambient, low-maintenance devices.
+- Open hardware and calm industrial design.
+- Pocket form factor as a deliberate alternative to smartphones.
+
+Questions
+
+- What can Steward learn from devices that deliberately do less?
+- How might solar or low-power design influence reference hardware?
+- What is the right balance between capability and calm?
+
+---
+
+## PocketMage
+
+https://pocketmage.org/
+
+https://github.com/ashtf8/PocketMage_PDA
+
+Focus
+
+Tinker-friendly PDA with a dual E Ink/OLED display, full keyboard, and productivity-oriented OS. Side-loadable apps and open hardware/software.
+
+Lessons
+
+- Dual-display design: E Ink for reading, OLED for responsiveness.
+- Built-in keyboard with modifier layers enables real text input on a pocket device.
+- Side-loading and a community app store extend capability without centralizing control.
+- Open source hardware and software invites community ports and longevity.
+
+Questions
+
+- Could Steward benefit from a split fast/responsive + low-power display architecture?
+- What productivity apps are essential for a pocket computing device?
+- How should third-party apps be sandboxed or distributed?
+
 ---
 
 ## Cheap Yellow Display (CYD)

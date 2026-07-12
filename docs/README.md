@@ -10,6 +10,7 @@ For the coding agent guide, see [AGENTS.md](../AGENTS.md).
 
 - [roadmap.md](./roadmap.md) — Living architectural roadmap: vision, principles, major components, and development phases.
 - [spec.md](./spec.md) — Project vision, core principles, system architecture, and PADD concept.
+- [mvp-plan.md](./mvp-plan.md) — Implementation plan for the minimum viable product: stack, structure, data model, API, and milestones.
 - [philosophy/](./philosophy/)
   - [attention.md](./philosophy/attention.md) — Attention and interruption philosophy; pull-first system design.
   - [naming.md](./philosophy/naming.md) — Naming philosophy, branding direction, and candidate themes.

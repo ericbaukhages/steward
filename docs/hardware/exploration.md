@@ -6,6 +6,10 @@ The PADD should feel like a dedicated appliance, not an app running on someone e
 
 The hardware exists to showcase the software. It should be inexpensive, approachable, and easy for others to reproduce.
 
+## Prototyping
+
+Before committing to a specific device, interaction ideas can be explored quickly using the [LVGL Simulator Prototype](./lvgl-prototype.md). It serves as a stand-in for the dedicated handheld client and lets the project validate navigation, density, and usability without hardware constraints.
+
 ## Current Priorities
 
 In rough order:

@@ -15,5 +15,6 @@ For the coding agent guide, see [AGENTS.md](../AGENTS.md).
   - [naming.md](./philosophy/naming.md) — Naming philosophy, branding direction, and candidate themes.
 - [hardware/](./hardware/)
   - [exploration.md](./hardware/exploration.md) — Hardware exploration for the PADD and reference platforms.
+  - [lvgl-prototype.md](./hardware/lvgl-prototype.md) — LVGL simulator prototype for early handheld UX iteration.
 - [research/](./research/)
   - [prior-art.md](./research/prior-art.md) — Projects, hardware, ecosystems, and design references worth studying.

@@ -1,0 +1,20 @@
+services:
+  steward-api:
+    build:
+      context: .
+      dockerfile: apps/api/Dockerfile
+    container_name: steward-api
+    restart: unless-stopped
+    ports:
+      - "3333:3333"
+    env_file:
+      - .env
+    environment:
+      - NODE_ENV=production
+      - HOST=0.0.0.0
+      - PORT=3333
+    volumes:
+      - steward-data:/app/data
+
+volumes:
+  steward-data:

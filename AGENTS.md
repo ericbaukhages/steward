@@ -85,6 +85,49 @@ For the detailed treatment, see [ARCHITECTURE.md](./ARCHITECTURE.md).
 
 ---
 
+## Repository Layout
+
+Steward is organized as a **pnpm workspace**. Use the Nix flake to enter a reproducible development shell (`nix develop` or `direnv allow`).
+
+```
+steward/
+├── apps/
+│   └── api/              # AdonisJS v6 backend + Edge/HTMX web client
+├── packages/
+│   ├── sdk/              # Shared API types and client
+│   └── ui/               # Shared Tailwind theme and CSS variables
+├── docker-compose.yml
+├── flake.nix             # Nix development environment
+└── package.json          # pnpm workspace root
+```
+
+Guidelines for placing code:
+
+- **`apps/api`** — the AdonisJS application. Controllers, models, services, validators, Edge views, and the MCP module all live here. The web client is currently served from this app using Edge.js and HTMX, not as a separate SPA.
+- **`packages/sdk`** — TypeScript types and API clients intended for reuse across clients. Anything in here must be buildable with `tsc` and must not depend on AdonisJS-specific code.
+- **`packages/ui`** — shared theme CSS, Tailwind configuration, and (eventually) reusable Edge components or macros. Keep it framework-agnostic enough for future clients to reuse.
+
+When adding a new top-level service or client, create a new directory under `apps/`. When adding shared code that multiple apps need, create a new package under `packages/`.
+
+### Common commands
+
+```bash
+# Install dependencies across the workspace
+pnpm install
+
+# Build shared packages
+pnpm --filter @steward/sdk build
+
+# Start the Adonis dev server
+pnpm --filter @steward/api dev
+
+# Typecheck or build the API
+pnpm --filter @steward/api typecheck
+pnpm --filter @steward/api build
+```
+
+---
+
 ## Development Phases
 
 Build in this order. Do not jump ahead unless the earlier phase genuinely supports it.

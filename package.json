@@ -1,0 +1,15 @@
+{
+  "name": "steward",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Steward - self-hosted operating environment",
+  "scripts": {
+    "dev": "pnpm --filter api dev",
+    "build": "pnpm -r build",
+    "test": "pnpm -r test",
+    "lint": "pnpm -r lint"
+  },
+  "devDependencies": {},
+  "packageManager": "pnpm@11.10.0"
+}

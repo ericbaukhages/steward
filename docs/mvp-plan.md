@@ -30,6 +30,7 @@ This aligns with **Phase 0 — Foundation** and the beginning of **Phase 1 — W
 | API documentation | `adonis-autoswagger` |
 | MCP server | Module inside `apps/api`, stdio transport, `@modelcontextprotocol/sdk` |
 | Monorepo tool | pnpm workspaces |
+| Development environment | Nix flake |
 | Containerization | Docker + Docker Compose |
 | Test runner | Japa |
 
@@ -40,14 +41,8 @@ This aligns with **Phase 0 — Foundation** and the beginning of **Phase 1 — W
 ```
 steward/
 ├── apps/
-│   └── api/                      # AdonisJS backend
-│       ├── app/
-│       │   ├── controllers/      # REST + HTML controllers
-│       │   ├── models/           # Lucid models: User, Project, Task
-│       │   ├── services/         # Business logic shared by API and MCP
-│       │   ├── validators/       # VineJS request validators
-│       │   ├── mcp/              # MCP server module
-│       │   └── middleware/       # Auth, theme, etc.
+│   └── api/                      # AdonisJS backend + web client
+│       ├── app/                  # Controllers, models, services, validators
 │       ├── resources/
 │       │   ├── views/            # Edge templates
 │       │   └── css/              # App-specific styles
@@ -62,17 +57,24 @@ steward/
 │       └── package.json
 │
 ├── packages/
+│   ├── sdk/                      # Shared API types and client
+│   │   ├── src/
+│   │   │   └── types/            # Project, Task, etc.
+│   │   └── package.json
+│   │
 │   └── ui/                       # Shared Tailwind theme and CSS
 │       ├── src/
 │       │   ├── theme.css         # CSS custom properties for themes
-│       │   ├── tailwind.config.ts
-│       │   └── components/       # Shared Edge macros and components
+│       │   └── tailwind.config.ts
 │       └── package.json
 │
 ├── docker-compose.yml
 ├── .env.example
 ├── pnpm-workspace.yaml
-└── package.json
+├── package.json
+├── flake.nix                     # Nix development environment
+├── flake.lock
+└── .envrc                        # direnv integration
 ```
 
 ---

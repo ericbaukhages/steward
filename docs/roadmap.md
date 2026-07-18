@@ -249,6 +249,28 @@ Long-term goals:
 
 ---
 
+# External Data Sources
+
+Steward should be able to pull data from external services and apps, not just accept data pushed through clients.
+
+Examples include:
+
+* weather services
+* bank or transaction feeds
+* package tracking
+* transit schedules
+* calendar providers
+* IoT devices
+* third-party APIs
+
+A plugin or app feature should define a scoped read-only source that periodically pulls data into the knowledge graph.
+
+This will likely require a scheduled task system to run fetches at defined intervals, with explicit limits on how often a source may run and what it is allowed to touch.
+
+> Caveat: pulling data from external sources could eventually be delegated to a dedicated agent such as a Hermes agent or OpenClaw task runner. For now, prefer a small, scoped read-only app or plugin rather than building a full external automation framework.
+
+---
+
 # Website Goals
 
 The website serves multiple purposes.
